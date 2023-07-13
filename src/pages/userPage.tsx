@@ -1,5 +1,6 @@
 import { Box, Button, styled, Typography } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import student from '../assets/student.png';
 import { PageContainer } from '../components/Containers/PageContainer';
@@ -78,6 +79,7 @@ export const UserPage = () => {
   const [code, setCode] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [graduation, setGraduation] = useState<string>('');
+  const navigate = useNavigate();
   return (
     <PageContainer>
       <Container>
@@ -144,6 +146,7 @@ export const UserPage = () => {
               sx={{
                 backgroundColor: '#1C7ED6',
               }}
+              onClick={() => navigate(`/teacher/`)}
             >
               <Typography color={'#FBFBFB'}>Ir para página dos professores</Typography>
             </Button>
@@ -151,6 +154,7 @@ export const UserPage = () => {
               sx={{
                 backgroundColor: '#1C7ED6',
               }}
+              onClick={() => navigate(`/class/`)}
             >
               <Typography color="#FBFBFB">Ir para página das turmas</Typography>
             </Button>

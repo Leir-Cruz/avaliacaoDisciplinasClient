@@ -1,5 +1,6 @@
 import { Box, Button, styled, Typography } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { PageContainer } from '../components/Containers/PageContainer';
 import { Input } from '../components/Input/Input';
@@ -50,6 +51,8 @@ export const Register = () => {
   const [code, setCode] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [graduation, setGraduation] = useState<string>('');
+  const navigate = useNavigate();
+
   return (
     <PageContainer>
       <Container>
@@ -99,6 +102,7 @@ export const Register = () => {
             backgroundColor: '#111315',
             color: '#FFF',
           }}
+          onClick={() => navigate(`/student/1`)}
         >
           Cadastrar
         </Button>

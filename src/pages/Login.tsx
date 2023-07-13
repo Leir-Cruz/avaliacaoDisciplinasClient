@@ -1,5 +1,6 @@
 import { Box, Button, styled, Typography } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { InputContainer } from '../components/Containers/InputContainer';
 import { PageContainer } from '../components/Containers/PageContainer';
@@ -49,6 +50,7 @@ const Container = styled(Box)(() => ({
 export const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
   return (
     <PageContainer>
       <Container>
@@ -79,6 +81,7 @@ export const Login = () => {
             backgroundColor: '#111315',
             color: '#FFF',
           }}
+          onClick={() => navigate(`/student/1`)}
         >
           Entrar
         </Button>

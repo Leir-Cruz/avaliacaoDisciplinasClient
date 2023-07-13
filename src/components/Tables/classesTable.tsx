@@ -5,6 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { useNavigate } from 'react-router-dom';
 
 import { IClass } from '../../services/interfaces';
 
@@ -23,6 +24,7 @@ const rows = [
 ];
 
 export const ClassesTable = () => {
+  const navigate = useNavigate();
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -38,7 +40,11 @@ export const ClassesTable = () => {
           {rows.map((row) => (
             <TableRow
               key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              onClick={() => navigate(`/class/1`)}
+              sx={{
+                '&:last-child td, &:last-child th': { border: 0 },
+                '&:hover': { cursor: 'pointer' },
+              }}
             >
               <TableCell component="th" scope="row">
                 {row.name}
