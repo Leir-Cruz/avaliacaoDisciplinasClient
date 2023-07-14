@@ -20,7 +20,7 @@ export const PageContainer = ({ children, color }: IContainer) => {
         backgroundColor: color ? color : '#1A1C20',
         boxSizing: 'border-box',
         gap: '40px',
-        padding: '0 0 30px 0',
+        //padding: '0 0 30px 0',
       }}
     >
       <Header />

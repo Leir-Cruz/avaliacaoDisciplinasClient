@@ -9,7 +9,7 @@ import { ITeacher } from '../services/interfaces';
 
 const Container = styled(Box)(() => ({
   display: 'flex',
-  padding: '16px 20px',
+  padding: '0px 20px',
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'flex-start',
@@ -36,6 +36,7 @@ const Container = styled(Box)(() => ({
     gap: '16px',
     flex: '1 0 0',
     alignSelf: 'stretch',
+    backgroundColor: '#1A1C20',
 
     '& .infoContainer': {
       display: 'flex',
