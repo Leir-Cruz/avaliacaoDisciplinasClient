@@ -15,8 +15,8 @@ const Container = styled(Box)(() => ({
   alignItems: 'center',
   gap: '15px',
   alignSelf: 'stretch',
-  border: '5px solid #E9ECEF',
-  backgroundColor: '#fff',
+  border: '5px solid #F0EDEE',
+  backgroundColor: '#39393A',
   borderRadius: '12px',
   margin: '0 auto',
 }));
@@ -25,9 +25,8 @@ export const HomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <PageContainer color="rgba(0, 0, 0, 0.005)">
+    <PageContainer color="#1A1C20">
       <Container>
-        <Header />
         <ImageContainer
           photoUrl={
             'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Webysther_20160322_-_Logo_UnB_%28sem_texto%29.svg/1200px-Webysther_20160322_-_Logo_UnB_%28sem_texto%29.svg.png'

@@ -17,7 +17,7 @@ export const PageContainer = ({ children, color }: IContainer) => {
         alignItems: 'center',
         justifyContent: 'flex-start',
         width: '100%',
-        backgroundColor: color ? color : '#fff',
+        backgroundColor: color ? color : '#1A1C20',
         boxSizing: 'border-box',
         gap: '40px',
         padding: '0 0 30px 0',

@@ -9,9 +9,10 @@ const Container = styled(Box)(() => ({
   alignItems: 'center',
   gap: '8px',
   alignSelf: 'stretch',
-  borderBottom: '1px solid #E9ECEF',
+  backgroundColor: '#39393A',
+  borderBottom: '1px solid #F0EDEE',
   '& .title': {
-    color: '#000',
+    color: '#F0EDEE',
     fontSize: '20px',
     fontFamily: 'Archivo',
     fontStyle: 'normal',

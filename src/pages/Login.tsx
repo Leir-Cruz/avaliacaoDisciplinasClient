@@ -17,12 +17,12 @@ const Container = styled(Box)(() => ({
   gap: '16px',
   flex: '1 0 0',
   alignSelf: 'stretch',
-  border: '5px solid #E9ECEF',
-  backgroundColor: '#1C7ED6',
+  border: '5px solid #F0EDEE',
+  backgroundColor: '#C589E8',
   borderRadius: '12px',
 
   '& .title': {
-    color: '#000',
+    color: '#1A1C20',
     fontSize: '20px',
     fontFamily: 'Archivo',
     fontStyle: 'normal',
@@ -37,7 +37,7 @@ const Container = styled(Box)(() => ({
     gap: '8px',
 
     '& .label': {
-      color: '#000',
+      color: '#1A1C20',
       fontSize: '14px',
       fontFamily: 'Archivo',
       fontStyle: 'normal',

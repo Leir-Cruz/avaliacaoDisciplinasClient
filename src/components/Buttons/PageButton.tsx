@@ -27,7 +27,7 @@ export const PageButton = ({
         gap: '10px',
         width: width ? width : 'fit-content',
         height: height ? height : '100px',
-        background: color ? color : '#4263EB',
+        background: color ? color : '#C589E8',
         borderRadius: '10px',
         padding: '8px 12px',
         position: 'relative',

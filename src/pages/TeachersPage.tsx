@@ -14,12 +14,12 @@ const Container = styled(Box)(() => ({
   gap: '16px',
   flex: '1 0 0',
   alignSelf: 'stretch',
-  border: '5px solid #E9ECEF',
+  border: '5px solid #F0EDEE',
   borderRadius: '12px',
-  backgroundColor: '#1C7ED6',
+  backgroundColor: '#C589E8',
 
   '& .title': {
-    color: '#000',
+    color: '#1A1C20',
     fontSize: '16px',
     fontFamily: 'Archivo',
     fontStyle: 'normal',

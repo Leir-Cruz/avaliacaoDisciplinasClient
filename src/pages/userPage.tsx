@@ -44,7 +44,7 @@ const Container = styled(Box)(() => ({
       gap: '8px',
 
       '& .label': {
-        color: '#000',
+        color: '#1A1C20',
         fontSize: '14px',
         fontFamily: 'Archivo',
         fontStyle: 'normal',
@@ -59,7 +59,7 @@ const Container = styled(Box)(() => ({
       alignItems: 'center',
       gap: '12px',
       alignSelf: 'stretch',
-      borderBottom: '1px solid #E9ECEF',
+      borderBottom: '1px solid #F0EDEE',
     },
   },
 
@@ -144,7 +144,7 @@ export const UserPage = () => {
           <Box className="navigation">
             <Button
               sx={{
-                backgroundColor: '#1C7ED6',
+                backgroundColor: '#C589E8',
               }}
               onClick={() => navigate(`/teacher/`)}
             >
@@ -152,7 +152,7 @@ export const UserPage = () => {
             </Button>
             <Button
               sx={{
-                backgroundColor: '#1C7ED6',
+                backgroundColor: '#C589E8',
               }}
               onClick={() => navigate(`/class/`)}
             >
@@ -160,7 +160,7 @@ export const UserPage = () => {
             </Button>
             <Button
               sx={{
-                backgroundColor: '#FF4040',
+                backgroundColor: '#FF715B',
               }}
             >
               <Typography color="#FBFBFB">Apagar minha conta</Typography>

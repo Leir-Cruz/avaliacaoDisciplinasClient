@@ -43,7 +43,7 @@ const Container = styled(Box)(() => ({
       alignItems: 'center',
       gap: '12px',
       alignSelf: 'stretch',
-      borderTop: '1px solid #E9ECEF',
+      borderTop: '1px solid #F0EDEE',
     },
 
     '& .addComment': {
@@ -54,7 +54,7 @@ const Container = styled(Box)(() => ({
       gap: '8px',
 
       '& .label': {
-        color: '#000',
+        color: '#1A1C20',
         fontSize: '18px',
         fontFamily: 'Archivo',
         fontStyle: 'normal',
@@ -112,7 +112,7 @@ export const ClassPage = () => {
           </Box>
           <Button
             sx={{
-              backgroundColor: '#1C7ED6',
+              backgroundColor: '#C589E8',
             }}
           >
             <Typography color="#FBFBFB">Enviar Avaliação</Typography>
