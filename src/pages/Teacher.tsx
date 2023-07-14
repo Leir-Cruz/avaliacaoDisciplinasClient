@@ -4,6 +4,7 @@ import { useState } from 'react';
 import teacher from '../assets/teacher.png';
 import { PageContainer } from '../components/Containers/PageContainer';
 import { Input } from '../components/Input/Input';
+import { useGlobalContext } from '../contexts/useContext';
 import { ITeacher } from '../services/interfaces';
 
 const Container = styled(Box)(() => ({
@@ -78,6 +79,7 @@ export const TeacherPage = () => {
   const [comment, setComment] = useState<string>('');
   const [grade, setGrade] = useState<string>('');
   const [teacherInfo, setTeacherInfo] = useState<ITeacher | null>(null);
+  const context = useGlobalContext();
 
   return (
     <PageContainer>
@@ -118,6 +120,15 @@ export const TeacherPage = () => {
             >
               <Typography color="#FBFBFB">Enviar Avaliação</Typography>
             </Button>
+            {context?.loggedUser && (
+              <Button
+                sx={{
+                  backgroundColor: '#FF715B',
+                }}
+              >
+                <Typography color="#FBFBFB">Ver avaliações desse professor</Typography>
+              </Button>
+            )}
           </Box>
         </Box>
       </Container>

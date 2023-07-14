@@ -3,7 +3,15 @@
 Projeto de Disciplina Banco de Dados.
 Elaborar um sistema onde estudantes possam avaliar professores e disciplinas. Permitir que estudantes se cadastrem e postem avaliações de professores e turmas de diferentes semestres.
 
-### alunos
+## Color Pallete:
+
+- #39393A
+- #1A1C20
+- #C589E8
+- #FF715B
+- #F0EDEE
+
+### aluno
 
 - Gabriel Cruz Vaz Santos - 200049038
 

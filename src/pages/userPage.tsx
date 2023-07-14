@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import student from '../assets/student.png';
 import { PageContainer } from '../components/Containers/PageContainer';
 import { Input } from '../components/Input/Input';
+import { useGlobalContext } from '../contexts/useContext';
 
 const Container = styled(Box)(() => ({
   display: 'flex',
@@ -79,6 +80,7 @@ export const UserPage = () => {
   const [code, setCode] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [graduation, setGraduation] = useState<string>('');
+  const context = useGlobalContext();
   const navigate = useNavigate();
   return (
     <PageContainer>
@@ -165,6 +167,15 @@ export const UserPage = () => {
             >
               <Typography color="#FBFBFB">Apagar minha conta</Typography>
             </Button>
+            {context?.loggedUser?.isAdmin && (
+              <Button
+                sx={{
+                  backgroundColor: '#FF715B',
+                }}
+              >
+                <Typography color="#FBFBFB">Apagar minha conta</Typography>
+              </Button>
+            )}
           </Box>
         </Box>
       </Container>

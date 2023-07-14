@@ -1,10 +1,12 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, SetStateAction, useContext } from 'react';
 
-export interface GlobalContext {
-  name: string;
-  setName: React.Dispatch<React.SetStateAction<string>>;
-}
+import { IUser } from '../services/interfaces';
 
-const GlobalContext = createContext<GlobalContext | null>(null);
+export type GlobalContent = {
+  loggedUser: IUser | null;
+  setLoggedUser: React.Dispatch<SetStateAction<IUser | null>>;
+};
+
+export const GlobalContext = createContext<GlobalContent | null>(null);
 
 export const useGlobalContext = () => useContext(GlobalContext);
