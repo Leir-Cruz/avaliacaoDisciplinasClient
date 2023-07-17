@@ -7,6 +7,7 @@ import { HomePage } from '../pages/Homepage';
 import { Login } from '../pages/Login';
 import { Register } from '../pages/Register';
 import { RegisterDepartament } from '../pages/RegisterDepartament';
+import { RegisterTeacher } from '../pages/RegisterTeacher';
 import { TeacherPage } from '../pages/Teacher';
 import { TeachersPage } from '../pages/TeachersPage';
 import { UserPage } from '../pages/userPage';
@@ -18,6 +19,7 @@ const MainRoutes = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/register" element={<Register />} />
       <Route path="/registerDepartament" element={<RegisterDepartament />} />
+      <Route path="/registerTeacher" element={<RegisterTeacher />} />
       <Route path="/login" element={<Login />} />
       <Route path="/student/:id" element={<UserPage />} />
       <Route path="/class/:id" element={<ClassPage />} />
