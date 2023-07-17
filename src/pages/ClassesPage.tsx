@@ -1,4 +1,5 @@
 import { Box, styled, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import { PageButton } from '../components/Buttons/PageButton';
 import { PageContainer } from '../components/Containers/PageContainer';
@@ -32,17 +33,18 @@ const Container = styled(Box)(() => ({
 
 export const ClassesPage = () => {
   const context = useGlobalContext();
+  const navigate = useNavigate();
 
   return (
     <PageContainer>
       <Container>
-        <Typography className="title">Lista de Professores</Typography>
+        <Typography className="title">Lista de Turmas</Typography>
         <ClassesTable />
         {context?.loggedUser?.isadmin && (
           <PageButton
             text="Cadastrar Turma"
             height="50px"
-            onClick={() => console.log('clicked')}
+            onClick={() => navigate('/registerClass')}
           />
         )}
       </Container>

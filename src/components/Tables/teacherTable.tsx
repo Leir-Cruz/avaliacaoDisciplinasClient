@@ -34,14 +34,15 @@ export const TeacherTable = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Nomes</TableCell>
-            <TableCell align="right">departamento</TableCell>
+            <TableCell>Id</TableCell>
+            <TableCell align="right">Nome</TableCell>
+            <TableCell align="right">Departamento_id</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {teachers.map((teacher) => (
             <TableRow
-              key={teacher.name}
+              key={teacher.id}
               onClick={() => navigate(`/teacher/${teacher.id}`)}
               sx={{
                 '&:last-child td, &:last-child th': { border: 0 },
@@ -49,8 +50,9 @@ export const TeacherTable = () => {
               }}
             >
               <TableCell component="th" scope="teacher">
-                {teacher.name}
+                {teacher.id}
               </TableCell>
+              <TableCell align="right">{teacher.name}</TableCell>
               <TableCell align="right">{teacher.departament_id}</TableCell>
             </TableRow>
           ))}

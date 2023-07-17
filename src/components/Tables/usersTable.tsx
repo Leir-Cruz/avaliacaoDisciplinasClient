@@ -5,7 +5,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -35,7 +34,8 @@ export const UsersTable = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Email</TableCell>
+            <TableCell>Id</TableCell>
+            <TableCell align="right">Email</TableCell>
             <TableCell align="right">Matrícula</TableCell>
             <TableCell align="right">Curso</TableCell>
             <TableCell align="right">Administrador</TableCell>
@@ -44,7 +44,7 @@ export const UsersTable = () => {
         <TableBody>
           {users.map((user) => (
             <TableRow
-              key={user.email}
+              key={user.id}
               onClick={() => navigate(`/student/${user.id}`)}
               sx={{
                 '&:last-child td, &:last-child th': { border: 0 },
@@ -52,8 +52,9 @@ export const UsersTable = () => {
               }}
             >
               <TableCell component="th" scope="user">
-                {user.email}
+                {user.id}
               </TableCell>
+              <TableCell align="right">{user.email}</TableCell>
               <TableCell align="right">{user.code}</TableCell>
               <TableCell align="right">{user.graduation}</TableCell>
               <TableCell align="right">{user.isadmin}</TableCell>
