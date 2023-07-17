@@ -2,9 +2,10 @@ import { Box, Button, styled, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { InputContainer } from '../components/Containers/InputContainer';
 import { PageContainer } from '../components/Containers/PageContainer';
 import { Input } from '../components/Input/Input';
+import { useGlobalContext } from '../contexts/useContext';
+import { api } from '../services/api';
 
 const Container = styled(Box)(() => ({
   display: 'flex',
@@ -50,11 +51,27 @@ const Container = styled(Box)(() => ({
 export const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const context = useGlobalContext();
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    api
+      .post('api/login', { email: email, password: password })
+      .then((response) => {
+        context?.setLoggedUser(response.data);
+        alert('logado com sucesso!');
+        navigate('/');
+      })
+      .catch((e) => {
+        alert('erro ao fazer login');
+        console.log(e);
+      });
+  };
+
   return (
     <PageContainer>
       <Container>
-        <Typography className="title">Fazer Cadastro</Typography>
+        <Typography className="title">Login</Typography>
         <Box className="inputContainer">
           <Typography className="label">Email</Typography>
           <Input
@@ -81,7 +98,7 @@ export const Login = () => {
             backgroundColor: '#111315',
             color: '#FFF',
           }}
-          onClick={() => navigate(`/student/1`)}
+          onClick={handleClick}
         >
           Entrar
         </Button>

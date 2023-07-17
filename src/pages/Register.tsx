@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { PageContainer } from '../components/Containers/PageContainer';
 import { Input } from '../components/Input/Input';
+import { api } from '../services/api';
 
 const Container = styled(Box)(() => ({
   display: 'flex',
@@ -51,8 +52,26 @@ export const Register = () => {
   const [code, setCode] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [graduation, setGraduation] = useState<string>('');
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+  const handleRegister = () => {
+    api
+      .post('api/user/create', {
+        email: email,
+        password: password,
+        code: code,
+        graduation: graduation,
+        isadmin: false,
+      })
+      .then(() => {
+        alert('usuário criado!');
+        navigate('/login');
+      })
+      .catch((e) => {
+        alert('erro ao registrar usuário');
+        console.log(e);
+      });
+  };
   return (
     <PageContainer>
       <Container>
@@ -102,7 +121,7 @@ export const Register = () => {
             backgroundColor: '#111315',
             color: '#FFF',
           }}
-          onClick={() => navigate(`/student/1`)}
+          onClick={handleRegister}
         >
           Cadastrar
         </Button>

@@ -88,8 +88,8 @@ export const ClassPage = () => {
         <img src={classImg} alt="classImg" />
         <Box className="info">
           {classInfo?.name && <Typography>{classInfo?.name}</Typography>}
-          {classInfo?.teacherId && <Typography>{classInfo?.teacherId}</Typography>}
-          {classInfo?.subjectId && <Typography>{classInfo?.subjectId}</Typography>}
+          {classInfo?.teacher_id && <Typography>{classInfo?.teacher_id}</Typography>}
+          {classInfo?.subject_id && <Typography>{classInfo?.subject_id}</Typography>}
           <Box className="addComment">
             <Typography className="label">Adicionar Avaliação</Typography>
             <Typography className="description">

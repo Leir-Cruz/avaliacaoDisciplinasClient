@@ -4,7 +4,7 @@ export interface IUser {
   email: string;
   code: string;
   password: string;
-  isAdmin?: boolean;
+  isadmin?: boolean;
 }
 
 export interface IDepartment {
@@ -15,8 +15,7 @@ export interface IDepartment {
 export interface ITeacher {
   id: string;
   name: string;
-  code: string;
-  departamentId: string;
+  departament_id: string;
 }
 
 export interface ISubject {
@@ -27,23 +26,22 @@ export interface ISubject {
 export interface IClass {
   id: string;
   name: string;
-  teacherId: string;
-  subjectId: string;
-  appointment?: string;
+  teacher_id: string;
+  subject_id: string;
 }
 
 export interface IComment {
   id: string;
-  userId: string;
+  user_id: string;
   content: string;
   grade: number;
-  teacherId?: string;
-  classId?: string;
+  teacher_id?: string;
+  class_id?: string;
 }
 
 export interface IComplaint {
   id: string;
-  userId: string;
-  commentId: string;
+  user_id: string;
+  comment_id: string;
   status: 'accepted || pending || declined';
 }

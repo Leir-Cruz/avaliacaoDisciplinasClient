@@ -167,13 +167,13 @@ export const UserPage = () => {
             >
               <Typography color="#FBFBFB">Apagar minha conta</Typography>
             </Button>
-            {context?.loggedUser?.isAdmin && (
+            {context?.loggedUser?.isadmin && (
               <Button
                 sx={{
                   backgroundColor: '#FF715B',
                 }}
               >
-                <Typography color="#FBFBFB">Apagar minha conta</Typography>
+                <Typography color="#FBFBFB">Ver todas as contas</Typography>
               </Button>
             )}
           </Box>
