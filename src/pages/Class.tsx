@@ -83,11 +83,30 @@ const Container = styled(Box)(() => ({
 }));
 
 export const ClassPage = () => {
-  const [comment, setComment] = useState<string>('');
+  const [content, setContent] = useState<string>('');
   const [grade, setGrade] = useState<string>('');
   const [classInfo, setClassInfo] = useState<IClass | null>(null);
   const context = useGlobalContext();
   const { id } = useParams();
+
+  const handleComment = () => {
+    api
+      .post(`api/comment/create`, {
+        content: content,
+        grade: grade,
+        user_id: context?.loggedUser?.id,
+        teacher_id: null,
+        class_id: id,
+      })
+      .then((response) => {
+        context?.setLoggedUser(response.data);
+        alert('comentário feito com sucesso!');
+      })
+      .catch((e) => {
+        alert('erro ao comentar infos');
+        console.log(e);
+      });
+  };
 
   useEffect(() => {
     api
@@ -121,11 +140,11 @@ export const ClassPage = () => {
             </Typography>
             <Input
               placeholder="Comentário"
-              onChange={(e) => setComment(e.target.value)}
+              onChange={(e) => setContent(e.target.value)}
               width="100%"
               height="25px"
               fontSize="14px"
-              value={comment}
+              value={content}
             />{' '}
             <Input
               placeholder="Nota"
@@ -140,6 +159,7 @@ export const ClassPage = () => {
             sx={{
               backgroundColor: '#C589E8',
             }}
+            onClick={handleComment}
           >
             <Typography color="#FBFBFB">Enviar Avaliação</Typography>
           </Button>
