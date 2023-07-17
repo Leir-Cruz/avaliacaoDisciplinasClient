@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { PageContainer } from '../components/Containers/PageContainer';
 import { Input } from '../components/Input/Input';
-import { useGlobalContext } from '../contexts/useContext';
 import { api } from '../services/api';
 
 const Container = styled(Box)(() => ({
@@ -19,8 +18,8 @@ const Container = styled(Box)(() => ({
   flex: '1 0 0',
   alignSelf: 'stretch',
   border: '5px solid #F0EDEE',
-  backgroundColor: '#C589E8',
   borderRadius: '12px',
+  backgroundColor: '#C589E8',
 
   '& .title': {
     color: '#1A1C20',
@@ -48,46 +47,33 @@ const Container = styled(Box)(() => ({
   },
 }));
 
-export const Login = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const context = useGlobalContext();
-  const navigate = useNavigate();
+export const RegisterSubject = () => {
+  const [name, setName] = useState<string>('');
 
-  const handleClick = () => {
+  const navigate = useNavigate();
+  const handleRegister = () => {
     api
-      .post('api/login', { email: email, password: password })
-      .then((response) => {
-        context?.setLoggedUser(response.data);
-        alert('logado com sucesso!');
-        navigate('/');
+      .post('api/subject/create', {
+        name: name,
+      })
+      .then(() => {
+        alert('matéria criada!');
+        navigate('/subject');
       })
       .catch((e) => {
-        alert('usuário ou senha incorretos! Tente novamente');
+        alert('erro ao registrar matéria');
         console.log(e);
       });
   };
-
   return (
     <PageContainer>
       <Container>
-        <Typography className="title">Login</Typography>
+        <Typography className="title">Criar matéria</Typography>
         <Box className="inputContainer">
-          <Typography className="label">Email</Typography>
+          <Typography className="label">name</Typography>
           <Input
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-            width="100%"
-            height="25px"
-            fontSize="12px"
-          />
-        </Box>
-
-        <Box className="inputContainer">
-          <Typography className="label">Senha</Typography>
-          <Input
-            placeholder="Senha"
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="name"
+            onChange={(e) => setName(e.target.value)}
             width="100%"
             height="25px"
             fontSize="12px"
@@ -98,9 +84,9 @@ export const Login = () => {
             backgroundColor: '#111315',
             color: '#FFF',
           }}
-          onClick={handleClick}
+          onClick={handleRegister}
         >
-          Entrar
+          Cadastrar
         </Button>
       </Container>
     </PageContainer>

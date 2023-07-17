@@ -7,7 +7,9 @@ import { HomePage } from '../pages/Homepage';
 import { Login } from '../pages/Login';
 import { Register } from '../pages/Register';
 import { RegisterDepartament } from '../pages/RegisterDepartament';
+import { RegisterSubject } from '../pages/RegisterSubject';
 import { RegisterTeacher } from '../pages/RegisterTeacher';
+import { SubjectsPage } from '../pages/SubjectsPage';
 import { TeacherPage } from '../pages/Teacher';
 import { TeachersPage } from '../pages/TeachersPage';
 import { UserPage } from '../pages/userPage';
@@ -19,6 +21,7 @@ const MainRoutes = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/register" element={<Register />} />
       <Route path="/registerDepartament" element={<RegisterDepartament />} />
+      <Route path="/registerSubject" element={<RegisterSubject />} />
       <Route path="/registerTeacher" element={<RegisterTeacher />} />
       <Route path="/login" element={<Login />} />
       <Route path="/student/:id" element={<UserPage />} />
@@ -28,6 +31,7 @@ const MainRoutes = () => {
       <Route path="/class/" element={<ClassesPage />} />
       <Route path="/student/" element={<UsersPage />} />
       <Route path="/departament/" element={<DepartamentsPage />} />
+      <Route path="/subject/" element={<SubjectsPage />} />
     </Routes>
   );
 };

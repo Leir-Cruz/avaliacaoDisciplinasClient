@@ -241,6 +241,14 @@ export const UserPage = () => {
                 </Button>
                 <Button
                   sx={{
+                    backgroundColor: '#C589E8',
+                  }}
+                  onClick={() => navigate(`/subject/ `)}
+                >
+                  <Typography color="#FBFBFB">Ir para página das matérias</Typography>
+                </Button>
+                <Button
+                  sx={{
                     backgroundColor: '#FF715B',
                   }}
                   onClick={handleDelete}
