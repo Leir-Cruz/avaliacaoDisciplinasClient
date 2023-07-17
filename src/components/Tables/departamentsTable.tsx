@@ -47,9 +47,8 @@ export const DepartamentsTable = () => {
               }}
             >
               <TableCell component="th" scope="departament">
-                {departament.name}
+                {departament.id}
               </TableCell>
-              <TableCell align="right">{departament.id}</TableCell>
               <TableCell align="right">{departament.name}</TableCell>
             </TableRow>
           ))}

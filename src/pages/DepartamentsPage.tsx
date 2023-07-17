@@ -1,4 +1,5 @@
 import { Box, styled, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import { PageButton } from '../components/Buttons/PageButton';
 import { PageContainer } from '../components/Containers/PageContainer';
@@ -32,6 +33,7 @@ const Container = styled(Box)(() => ({
 
 export const DepartamentsPage = () => {
   const context = useGlobalContext();
+  const navigate = useNavigate();
   return (
     <PageContainer>
       <Container>
@@ -40,7 +42,7 @@ export const DepartamentsPage = () => {
         {context?.loggedUser?.isadmin && (
           <PageButton
             text="Cadastrar Departamento"
-            onClick={() => console.log('clicked')}
+            onClick={() => navigate('/registerDepartament')}
           />
         )}
       </Container>
