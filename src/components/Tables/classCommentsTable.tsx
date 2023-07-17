@@ -11,7 +11,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { api } from '../../services/api';
 import { IComment } from '../../services/interfaces';
 
-export const ClassCommentsTable = () => {
+interface IClassCommentsTable {
+  onClickRow: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const ClassCommentsTable = ({ onClickRow }: IClassCommentsTable) => {
   const [comments, setComments] = useState<IComment[]>([]);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -45,6 +49,7 @@ export const ClassCommentsTable = () => {
           {comments.map((comment) => (
             <TableRow
               key={comment.id}
+              onClick={() => onClickRow(true)}
               sx={{
                 '&:last-child td, &:last-child th': { border: 0 },
                 '&:hover': { cursor: 'pointer' },
