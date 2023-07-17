@@ -5,50 +5,52 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { IClass } from '../../services/interfaces';
+import { api } from '../../services/api';
+import { IDepartment } from '../../services/interfaces';
 
-function createData({ id, name, teacher_id, subject_id }: IClass) {
-  return { id, name, teacher_id, subject_id };
-}
+export const DepartamentsTable = () => {
+  const [departaments, setDepartaments] = useState<IDepartment[]>([]);
 
-const rows = [
-  createData({
-    id: '321321312',
-    name: 'classes',
-    teacher_id: '123213',
-    subject_id: '312321',
-  }),
-];
-
-export const ClassesTable = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    api
+      .get('/api/departaments')
+      .then((response) => {
+        setDepartaments(response.data);
+      })
+      .catch((e) => {
+        setDepartaments([]);
+        console.log(e);
+        alert('erro ao carregar departamentos!');
+      });
+  }, []);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Nomes</TableCell>
-            <TableCell align="right">Professor</TableCell>
-            <TableCell align="right">Matéria&nbsp;</TableCell>
+            <TableCell>Id</TableCell>
+            <TableCell align="right">Nome</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {departaments.map((departament) => (
             <TableRow
-              key={row.name}
-              onClick={() => navigate(`/class/1`)}
+              key={departament.name}
               sx={{
                 '&:last-child td, &:last-child th': { border: 0 },
                 '&:hover': { cursor: 'pointer' },
               }}
             >
-              <TableCell component="th" scope="row">
-                {row.name}
+              <TableCell component="th" scope="departament">
+                {departament.name}
               </TableCell>
-              <TableCell align="right">{row.teacher_id}</TableCell>
-              <TableCell align="right">{row.subject_id}</TableCell>
+              <TableCell align="right">{departament.id}</TableCell>
+              <TableCell align="right">{departament.name}</TableCell>
             </TableRow>
           ))}
         </TableBody>

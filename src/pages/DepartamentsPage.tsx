@@ -2,7 +2,7 @@ import { Box, styled, Typography } from '@mui/material';
 
 import { PageButton } from '../components/Buttons/PageButton';
 import { PageContainer } from '../components/Containers/PageContainer';
-import { ClassesTable } from '../components/Tables/classesTable';
+import { DepartamentsTable } from '../components/Tables/departamentsTable';
 import { useGlobalContext } from '../contexts/useContext';
 
 const Container = styled(Box)(() => ({
@@ -30,18 +30,16 @@ const Container = styled(Box)(() => ({
   },
 }));
 
-export const ClassesPage = () => {
+export const DepartamentsPage = () => {
   const context = useGlobalContext();
-
   return (
     <PageContainer>
       <Container>
-        <Typography className="title">Lista de Professores</Typography>
-        <ClassesTable />
+        <Typography className="title">Lista de Departamentos</Typography>
+        <DepartamentsTable />
         {context?.loggedUser?.isadmin && (
           <PageButton
-            text="Cadastrar Turma"
-            height="50px"
+            text="Cadastrar Departamento"
             onClick={() => console.log('clicked')}
           />
         )}

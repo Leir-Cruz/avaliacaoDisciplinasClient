@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { ClassPage } from '../pages/Class';
 import { ClassesPage } from '../pages/ClassesPage';
+import { DepartamentsPage } from '../pages/DepartamentsPage';
 import { HomePage } from '../pages/Homepage';
 import { Login } from '../pages/Login';
 import { Register } from '../pages/Register';
@@ -22,6 +23,7 @@ const MainRoutes = () => {
       <Route path="/teacher/" element={<TeachersPage />} />
       <Route path="/class/" element={<ClassesPage />} />
       <Route path="/student/" element={<UsersPage />} />
+      <Route path="/departament/" element={<DepartamentsPage />} />
     </Routes>
   );
 };

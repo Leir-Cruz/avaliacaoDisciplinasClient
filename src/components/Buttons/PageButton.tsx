@@ -44,6 +44,7 @@ export const PageButton = ({
           fontSize: fontSize ? fontSize : '48px',
           textTransform: 'uppercase',
           color: '#FFFFFF',
+          textAlign: 'center',
         }}
       >
         {text}

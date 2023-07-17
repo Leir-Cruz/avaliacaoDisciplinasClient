@@ -26,7 +26,6 @@ export const TeacherTable = () => {
         setTeachers([]);
         console.log(e);
         alert('erro ao carregar professores!');
-        navigate('/');
       });
   }, []);
 

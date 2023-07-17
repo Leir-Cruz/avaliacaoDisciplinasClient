@@ -1,7 +1,9 @@
 import { Box, styled, Typography } from '@mui/material';
 
+import { PageButton } from '../components/Buttons/PageButton';
 import { PageContainer } from '../components/Containers/PageContainer';
 import { TeacherTable } from '../components/Tables/teacherTable';
+import { useGlobalContext } from '../contexts/useContext';
 
 const Container = styled(Box)(() => ({
   display: 'flex',
@@ -29,11 +31,20 @@ const Container = styled(Box)(() => ({
 }));
 
 export const TeachersPage = () => {
+  const context = useGlobalContext();
+
   return (
     <PageContainer>
       <Container>
         <Typography className="title">Lista de Professores</Typography>
         <TeacherTable />
+        {context?.loggedUser?.isadmin && (
+          <PageButton
+            text="Cadastrar Professor"
+            height="50px"
+            onClick={() => console.log('clicked')}
+          />
+        )}
       </Container>
     </PageContainer>
   );

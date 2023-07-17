@@ -213,7 +213,7 @@ export const UserPage = () => {
               sx={{
                 backgroundColor: '#C589E8',
               }}
-              onClick={() => navigate(`/ teacher / `)}
+              onClick={() => navigate(`/teacher/ `)}
             >
               <Typography color={'#FBFBFB'}>Ir para página dos professores</Typography>
             </Button>
@@ -221,9 +221,17 @@ export const UserPage = () => {
               sx={{
                 backgroundColor: '#C589E8',
               }}
-              onClick={() => navigate(`/ class/ `)}
+              onClick={() => navigate(`/class/ `)}
             >
               <Typography color="#FBFBFB">Ir para página das turmas</Typography>
+            </Button>
+            <Button
+              sx={{
+                backgroundColor: '#C589E8',
+              }}
+              onClick={() => navigate(`/departament/ `)}
+            >
+              <Typography color="#FBFBFB">Ir para página das departamentos</Typography>
             </Button>
             {context?.loggedUser?.id == id && (
               <>
