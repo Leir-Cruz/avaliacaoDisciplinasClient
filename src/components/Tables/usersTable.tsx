@@ -10,22 +10,22 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { api } from '../../services/api';
-import { ITeacher } from '../../services/interfaces';
+import { IUser } from '../../services/interfaces';
 
-export const TeacherTable = () => {
-  const [teachers, setTeachers] = useState<ITeacher[]>([]);
+export const UsersTable = () => {
+  const [users, setUsers] = useState<IUser[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     api
-      .get('/api/teachers')
+      .get('/api/users')
       .then((response) => {
-        setTeachers(response.data);
+        setUsers(response.data);
       })
       .catch((e) => {
-        setTeachers([]);
+        setUsers([]);
         console.log(e);
-        alert('erro ao carregar professores!');
+        alert('erro ao carregar alunos!');
         navigate('/');
       });
   }, []);
@@ -35,24 +35,28 @@ export const TeacherTable = () => {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Nomes</TableCell>
-            <TableCell align="right">departamento</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell align="right">Matrícula</TableCell>
+            <TableCell align="right">Curso</TableCell>
+            <TableCell align="right">Administrador</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {teachers.map((teacher) => (
+          {users.map((user) => (
             <TableRow
-              key={teacher.name}
-              onClick={() => navigate(`/teacher/${teacher.id}`)}
+              key={user.email}
+              onClick={() => navigate(`/student/${user.id}`)}
               sx={{
                 '&:last-child td, &:last-child th': { border: 0 },
                 '&:hover': { cursor: 'pointer' },
               }}
             >
-              <TableCell component="th" scope="teacher">
-                {teacher.name}
+              <TableCell component="th" scope="user">
+                {user.email}
               </TableCell>
-              <TableCell align="right">{teacher.departament_id}</TableCell>
+              <TableCell align="right">{user.code}</TableCell>
+              <TableCell align="right">{user.graduation}</TableCell>
+              <TableCell align="right">{user.isadmin}</TableCell>
             </TableRow>
           ))}
         </TableBody>

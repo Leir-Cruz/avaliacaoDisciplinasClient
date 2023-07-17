@@ -8,6 +8,7 @@ import { Register } from '../pages/Register';
 import { TeacherPage } from '../pages/Teacher';
 import { TeachersPage } from '../pages/TeachersPage';
 import { UserPage } from '../pages/userPage';
+import { UsersPage } from '../pages/UsersPage';
 
 const MainRoutes = () => {
   return (
@@ -17,9 +18,10 @@ const MainRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/student/:id" element={<UserPage />} />
       <Route path="/class/:id" element={<ClassPage />} />
+      <Route path="/teacher/:id" element={<TeacherPage />} />
       <Route path="/teacher/" element={<TeachersPage />} />
       <Route path="/class/" element={<ClassesPage />} />
-      <Route path="/teacher/:id" element={<TeacherPage />} />
+      <Route path="/student/" element={<UsersPage />} />
     </Routes>
   );
 };

@@ -1,6 +1,6 @@
 import { Box, Button, styled, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import student from '../assets/student.png';
 import { PageContainer } from '../components/Containers/PageContainer';
@@ -83,6 +83,7 @@ export const UserPage = () => {
   const [graduation, setGraduation] = useState<string | null>('');
   const context = useGlobalContext();
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const handleUpdate = () => {
     api
@@ -119,10 +120,26 @@ export const UserPage = () => {
 
   useEffect(() => {
     if (context?.loggedUser) {
-      setEmail(context.loggedUser?.email);
-      setCode(context.loggedUser?.code);
-      setPassword(context.loggedUser?.password);
-      setGraduation(context.loggedUser?.graduation);
+      if (context.loggedUser.id == id) {
+        setEmail(context.loggedUser?.email);
+        setCode(context.loggedUser?.code);
+        setPassword(context.loggedUser?.password);
+        setGraduation(context.loggedUser?.graduation);
+      } else {
+        api
+          .get(`api/user/${id}`)
+          .then((response) => {
+            setEmail(response.data.email);
+            setCode(response.data.code);
+            setPassword(response.data.password);
+            setGraduation(response.data.graduation);
+          })
+          .catch((e) => {
+            console.log(e);
+            alert('falha ao carregar informações do usuário');
+            navigate('/');
+          });
+      }
     }
   }, [context?.loggedUser]);
   return (
@@ -196,7 +213,7 @@ export const UserPage = () => {
               sx={{
                 backgroundColor: '#C589E8',
               }}
-              onClick={() => navigate(`/teacher/`)}
+              onClick={() => navigate(`/ teacher / `)}
             >
               <Typography color={'#FBFBFB'}>Ir para página dos professores</Typography>
             </Button>
@@ -204,11 +221,11 @@ export const UserPage = () => {
               sx={{
                 backgroundColor: '#C589E8',
               }}
-              onClick={() => navigate(`/class/`)}
+              onClick={() => navigate(`/ class/ `)}
             >
               <Typography color="#FBFBFB">Ir para página das turmas</Typography>
             </Button>
-            {context?.loggedUser && (
+            {context?.loggedUser?.id == id && (
               <>
                 <Button
                   sx={{
@@ -223,7 +240,7 @@ export const UserPage = () => {
                     backgroundColor: '#FF715B',
                   }}
                   onClick={() => {
-                    context.setLoggedUser(null);
+                    context?.setLoggedUser(null);
                     navigate('/');
                   }}
                 >
@@ -231,10 +248,23 @@ export const UserPage = () => {
                 </Button>
               </>
             )}
-            {context?.loggedUser?.isadmin && (
+            {context?.loggedUser?.isadmin && context?.loggedUser?.id != id && (
               <Button
                 sx={{
                   backgroundColor: '#FF715B',
+                }}
+                onClick={handleDelete}
+              >
+                <Typography color="#FBFBFB">Apagar essa conta conta</Typography>
+              </Button>
+            )}
+            {context?.loggedUser?.isadmin && (
+              <Button
+                sx={{
+                  backgroundColor: '#C589E8',
+                }}
+                onClick={() => {
+                  navigate('/student');
                 }}
               >
                 <Typography color="#FBFBFB">Ver todas as contas</Typography>
