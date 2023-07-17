@@ -15,7 +15,7 @@ const Container = styled(Box)(() => ({
   alignItems: 'center',
   justifyContent: 'flex-start',
   margin: '0',
-  width: '100%',
+  width: 'calc(100% - 40px)',
   gap: '16px',
   flex: '1 0 0',
   alignSelf: 'stretch',
@@ -33,7 +33,7 @@ const Container = styled(Box)(() => ({
     alignItems: 'center',
     justifyContent: 'flex-start',
     margin: '0 auto',
-    width: '50%',
+    width: 'calc(50% - 40px)',
     gap: '16px',
     flex: '1 0 0',
     alignSelf: 'stretch',
@@ -209,32 +209,36 @@ export const UserPage = () => {
             </Button>
           </Box>
           <Box className="navigation">
-            <Button
-              sx={{
-                backgroundColor: '#C589E8',
-              }}
-              onClick={() => navigate(`/teacher/ `)}
-            >
-              <Typography color={'#FBFBFB'}>Ir para página dos professores</Typography>
-            </Button>
-            <Button
-              sx={{
-                backgroundColor: '#C589E8',
-              }}
-              onClick={() => navigate(`/class/ `)}
-            >
-              <Typography color="#FBFBFB">Ir para página das turmas</Typography>
-            </Button>
-            <Button
-              sx={{
-                backgroundColor: '#C589E8',
-              }}
-              onClick={() => navigate(`/departament/ `)}
-            >
-              <Typography color="#FBFBFB">Ir para página das departamentos</Typography>
-            </Button>
             {context?.loggedUser?.id == id && (
               <>
+                <Button
+                  sx={{
+                    backgroundColor: '#C589E8',
+                  }}
+                  onClick={() => navigate(`/teacher/ `)}
+                >
+                  <Typography color={'#FBFBFB'}>
+                    Ir para página dos professores
+                  </Typography>
+                </Button>
+                <Button
+                  sx={{
+                    backgroundColor: '#C589E8',
+                  }}
+                  onClick={() => navigate(`/class/ `)}
+                >
+                  <Typography color="#FBFBFB">Ir para página das turmas</Typography>
+                </Button>
+                <Button
+                  sx={{
+                    backgroundColor: '#C589E8',
+                  }}
+                  onClick={() => navigate(`/departament/ `)}
+                >
+                  <Typography color="#FBFBFB">
+                    Ir para página das departamentos
+                  </Typography>
+                </Button>
                 <Button
                   sx={{
                     backgroundColor: '#FF715B',
