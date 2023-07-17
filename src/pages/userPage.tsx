@@ -1,11 +1,12 @@
 import { Box, Button, styled, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import student from '../assets/student.png';
 import { PageContainer } from '../components/Containers/PageContainer';
 import { Input } from '../components/Input/Input';
 import { useGlobalContext } from '../contexts/useContext';
+import { api } from '../services/api';
 
 const Container = styled(Box)(() => ({
   display: 'flex',
@@ -76,12 +77,54 @@ const Container = styled(Box)(() => ({
 }));
 
 export const UserPage = () => {
-  const [email, setEmail] = useState<string>('');
-  const [code, setCode] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [graduation, setGraduation] = useState<string>('');
+  const [email, setEmail] = useState<string | null>('');
+  const [code, setCode] = useState<string | null>('');
+  const [password, setPassword] = useState<string | null>('');
+  const [graduation, setGraduation] = useState<string | null>('');
   const context = useGlobalContext();
   const navigate = useNavigate();
+
+  const handleUpdate = () => {
+    api
+      .patch(`api/user/update/${context?.loggedUser?.id}`, {
+        email: email,
+        password: password,
+        code: code,
+        graduation: graduation,
+      })
+      .then((response) => {
+        context?.setLoggedUser(response.data);
+        console.log('update', response.data);
+        alert('user alterado com sucesso!');
+        navigate('/');
+      })
+      .catch((e) => {
+        alert('erro ao alterar infos');
+        console.log(e);
+      });
+  };
+
+  const handleDelete = () => {
+    api
+      .delete(`api/user/delete/${context?.loggedUser?.id}`)
+      .then(() => {
+        context?.setLoggedUser(null);
+        alert('user deletado com sucesso!');
+      })
+      .catch((e) => {
+        alert('erro ao deletar');
+        console.log(e);
+      });
+  };
+
+  useEffect(() => {
+    if (context?.loggedUser) {
+      setEmail(context.loggedUser?.email);
+      setCode(context.loggedUser?.code);
+      setPassword(context.loggedUser?.password);
+      setGraduation(context.loggedUser?.graduation);
+    }
+  }, [context?.loggedUser]);
   return (
     <PageContainer>
       <Container>
@@ -95,6 +138,7 @@ export const UserPage = () => {
               width="100%"
               height="25px"
               fontSize="12px"
+              value={email ? email : ''}
             />
           </Box>
           <Box className="inputContainer">
@@ -105,6 +149,7 @@ export const UserPage = () => {
               width="100%"
               height="25px"
               fontSize="12px"
+              value={code ? code : ''}
             />
           </Box>
           <Box className="inputContainer">
@@ -115,6 +160,7 @@ export const UserPage = () => {
               width="100%"
               height="25px"
               fontSize="12px"
+              value={graduation ? graduation : ''}
             />
           </Box>
           <Box className="inputContainer">
@@ -125,6 +171,7 @@ export const UserPage = () => {
               width="100%"
               height="25px"
               fontSize="12px"
+              value={password ? password : ''}
             />
           </Box>
           <Box className="buttonContainer">
@@ -139,6 +186,7 @@ export const UserPage = () => {
               sx={{
                 backgroundColor: '#111315',
               }}
+              onClick={handleUpdate}
             >
               <Typography color="#FBFBFB">Salvar</Typography>
             </Button>
@@ -160,13 +208,29 @@ export const UserPage = () => {
             >
               <Typography color="#FBFBFB">Ir para página das turmas</Typography>
             </Button>
-            <Button
-              sx={{
-                backgroundColor: '#FF715B',
-              }}
-            >
-              <Typography color="#FBFBFB">Apagar minha conta</Typography>
-            </Button>
+            {context?.loggedUser && (
+              <>
+                <Button
+                  sx={{
+                    backgroundColor: '#FF715B',
+                  }}
+                  onClick={handleDelete}
+                >
+                  <Typography color="#FBFBFB">Apagar minha conta</Typography>
+                </Button>
+                <Button
+                  sx={{
+                    backgroundColor: '#FF715B',
+                  }}
+                  onClick={() => {
+                    context.setLoggedUser(null);
+                    navigate('/');
+                  }}
+                >
+                  <Typography color="#FBFBFB">Fazer Logout</Typography>
+                </Button>
+              </>
+            )}
             {context?.loggedUser?.isadmin && (
               <Button
                 sx={{

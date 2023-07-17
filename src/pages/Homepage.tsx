@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { PageButton } from '../components/Buttons/PageButton';
 import { ImageContainer } from '../components/Containers/ImageContainer';
 import { PageContainer } from '../components/Containers/PageContainer';
-import { Header } from '../components/Header/header';
+import { useGlobalContext } from '../contexts/useContext';
 
 const Container = styled(Box)(() => ({
   display: 'flex',
@@ -23,6 +23,7 @@ const Container = styled(Box)(() => ({
 
 export const HomePage = () => {
   const navigate = useNavigate();
+  const context = useGlobalContext();
 
   return (
     <PageContainer color="#1A1C20">
@@ -34,8 +35,23 @@ export const HomePage = () => {
           width="300px"
           height="200px"
         />
-        <PageButton text="Login" height="50px" onClick={() => navigate(`login`)} />
-        <PageButton text="Cadastro" height="50px" onClick={() => navigate(`register`)} />
+
+        {context?.loggedUser ? (
+          <PageButton
+            text="Minha página"
+            height="50px"
+            onClick={() => navigate(`/student/${context.loggedUser?.id}`)}
+          />
+        ) : (
+          <>
+            <PageButton text="Login" height="50px" onClick={() => navigate(`login`)} />
+            <PageButton
+              text="Cadastro"
+              height="50px"
+              onClick={() => navigate(`register`)}
+            />
+          </>
+        )}
       </Container>
     </PageContainer>
   );
