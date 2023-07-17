@@ -1,10 +1,12 @@
 import { Box, Button, styled, Typography } from '@mui/material';
+import { create } from '@mui/material/styles/createTransitions';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import teacher from '../assets/teacher.png';
 import { PageContainer } from '../components/Containers/PageContainer';
 import { Input } from '../components/Input/Input';
+import { PopUp } from '../components/PopUp/popup';
 import { useGlobalContext } from '../contexts/useContext';
 import { api } from '../services/api';
 import { ITeacher } from '../services/interfaces';
@@ -85,6 +87,8 @@ const Container = styled(Box)(() => ({
 export const TeacherPage = () => {
   const [content, setContent] = useState<string>('');
   const [grade, setGrade] = useState<string>('');
+  const [open, setOpen] = useState<boolean>(false);
+  const [created, setCreated] = useState<string>('');
   const [teacherInfo, setTeacherInfo] = useState<ITeacher | null>(null);
   const context = useGlobalContext();
   const { id } = useParams();
@@ -100,12 +104,13 @@ export const TeacherPage = () => {
       })
       .then((response) => {
         context?.setLoggedUser(response.data);
-        alert('comentário feito com sucesso!');
+        setCreated('success');
       })
       .catch((e) => {
-        alert('erro ao comentar infos');
+        setCreated('failed');
         console.log(e);
-      });
+      })
+      .finally(() => setOpen(true));
   };
 
   useEffect(() => {
@@ -117,13 +122,13 @@ export const TeacherPage = () => {
       .catch((e) => {
         console.log(e);
         setTeacherInfo(null);
-        alert('falha ao carregar informações do professor');
       });
   }, []);
 
   return (
     <PageContainer>
       <Container>
+        <PopUp open={open} setOpen={setOpen} type={created} />
         <img src={teacher} alt="teacher" />
         <Box className="info">
           {teacherInfo?.name && (

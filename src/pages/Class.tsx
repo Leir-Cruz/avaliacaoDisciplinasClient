@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import classImg from '../assets/class.png';
 import { PageContainer } from '../components/Containers/PageContainer';
 import { Input } from '../components/Input/Input';
+import { PopUp } from '../components/PopUp/popup';
 import { useGlobalContext } from '../contexts/useContext';
 import { api } from '../services/api';
 import { IClass } from '../services/interfaces';
@@ -86,6 +87,8 @@ export const ClassPage = () => {
   const [content, setContent] = useState<string>('');
   const [grade, setGrade] = useState<string>('');
   const [classInfo, setClassInfo] = useState<IClass | null>(null);
+  const [open, setOpen] = useState<boolean>(false);
+  const [created, setCreated] = useState<string>('');
   const context = useGlobalContext();
   const { id } = useParams();
 
@@ -100,12 +103,13 @@ export const ClassPage = () => {
       })
       .then((response) => {
         context?.setLoggedUser(response.data);
-        alert('comentário feito com sucesso!');
+        setCreated('success');
       })
       .catch((e) => {
-        alert('erro ao comentar infos');
+        setCreated('failed');
         console.log(e);
-      });
+      })
+      .finally(() => setOpen(true));
   };
 
   useEffect(() => {
@@ -123,6 +127,7 @@ export const ClassPage = () => {
   return (
     <PageContainer>
       <Container>
+        <PopUp open={open} setOpen={setOpen} type={created} />
         <img src={classImg} alt="classImg" />
         <Box className="info">
           {classInfo?.name && <Typography>Nome da turma: {classInfo?.name}</Typography>}
