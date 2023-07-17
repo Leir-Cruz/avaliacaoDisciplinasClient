@@ -111,6 +111,7 @@ export const UserPage = () => {
       .then(() => {
         context?.setLoggedUser(null);
         alert('user deletado com sucesso!');
+        navigate('/');
       })
       .catch((e) => {
         alert('erro ao deletar');
@@ -215,7 +216,7 @@ export const UserPage = () => {
                   sx={{
                     backgroundColor: '#C589E8',
                   }}
-                  onClick={() => navigate(`/teacher/ `)}
+                  onClick={() => navigate(`/teacher/`)}
                 >
                   <Typography color={'#FBFBFB'}>
                     Ir para página dos professores
@@ -233,7 +234,7 @@ export const UserPage = () => {
                   sx={{
                     backgroundColor: '#C589E8',
                   }}
-                  onClick={() => navigate(`/departament/ `)}
+                  onClick={() => navigate(`/departament/`)}
                 >
                   <Typography color="#FBFBFB">
                     Ir para página das departamentos
@@ -243,7 +244,7 @@ export const UserPage = () => {
                   sx={{
                     backgroundColor: '#C589E8',
                   }}
-                  onClick={() => navigate(`/subject/ `)}
+                  onClick={() => navigate(`/subject/`)}
                 >
                   <Typography color="#FBFBFB">Ir para página das matérias</Typography>
                 </Button>

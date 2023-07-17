@@ -1,6 +1,6 @@
 import { Box, Button, styled, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import teacher from '../assets/teacher.png';
 import { PageContainer } from '../components/Containers/PageContainer';
@@ -90,6 +90,7 @@ export const TeacherPage = () => {
   const [created, setCreated] = useState<string>('');
   const [teacherInfo, setTeacherInfo] = useState<ITeacher | null>(null);
   const context = useGlobalContext();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const handleComment = () => {
@@ -148,7 +149,7 @@ export const TeacherPage = () => {
               height="25px"
               fontSize="14px"
               value={content}
-            />{' '}
+            />
             <Input
               placeholder="Nota"
               onChange={(e) => setGrade(e.target.value)}
@@ -170,6 +171,7 @@ export const TeacherPage = () => {
                 sx={{
                   backgroundColor: '#FF715B',
                 }}
+                onClick={() => navigate(`/teacher/${id}/comments`)}
               >
                 <Typography color="#FBFBFB">Ver avaliações desse professor</Typography>
               </Button>

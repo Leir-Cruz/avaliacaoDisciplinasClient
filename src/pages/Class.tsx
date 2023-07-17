@@ -1,6 +1,6 @@
 import { Box, Button, styled, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import classImg from '../assets/class.png';
 import { PageContainer } from '../components/Containers/PageContainer';
@@ -90,6 +90,7 @@ export const ClassPage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [created, setCreated] = useState<string>('');
   const context = useGlobalContext();
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const handleComment = () => {
@@ -172,6 +173,7 @@ export const ClassPage = () => {
               sx={{
                 backgroundColor: '#FF715B',
               }}
+              onClick={() => navigate(`/class/${id}/comments`)}
             >
               <Typography color="#FBFBFB">Ver avaliações dessa turma</Typography>
             </Button>

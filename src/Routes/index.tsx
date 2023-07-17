@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import { ClassPage } from '../pages/Class';
+import { ClassCommentsPage } from '../pages/ClassCommentsPage';
 import { ClassesPage } from '../pages/ClassesPage';
 import { DepartamentsPage } from '../pages/DepartamentsPage';
 import { HomePage } from '../pages/Homepage';
@@ -12,6 +13,7 @@ import { RegisterSubject } from '../pages/RegisterSubject';
 import { RegisterTeacher } from '../pages/RegisterTeacher';
 import { SubjectsPage } from '../pages/SubjectsPage';
 import { TeacherPage } from '../pages/Teacher';
+import { TeacherCommentsPage } from '../pages/TeacherCommentsPage';
 import { TeachersPage } from '../pages/TeachersPage';
 import { UserPage } from '../pages/userPage';
 import { UsersPage } from '../pages/UsersPage';
@@ -34,6 +36,8 @@ const MainRoutes = () => {
       <Route path="/student/" element={<UsersPage />} />
       <Route path="/departament/" element={<DepartamentsPage />} />
       <Route path="/subject/" element={<SubjectsPage />} />
+      <Route path="/teacher/:id/comments" element={<TeacherCommentsPage />} />
+      <Route path="/class/:id/comments" element={<ClassCommentsPage />} />
     </Routes>
   );
 };
