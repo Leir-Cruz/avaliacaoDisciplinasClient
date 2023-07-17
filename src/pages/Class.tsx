@@ -1,10 +1,12 @@
 import { Box, Button, styled, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import classImg from '../assets/class.png';
 import { PageContainer } from '../components/Containers/PageContainer';
 import { Input } from '../components/Input/Input';
 import { useGlobalContext } from '../contexts/useContext';
+import { api } from '../services/api';
 import { IClass } from '../services/interfaces';
 
 const Container = styled(Box)(() => ({
@@ -48,6 +50,10 @@ const Container = styled(Box)(() => ({
       borderTop: '1px solid #F0EDEE',
     },
 
+    '& .MuiTypography-root': {
+      color: '#F0EDEE',
+    },
+
     '& .addComment': {
       display: 'flex',
       flexDirection: 'column',
@@ -81,15 +87,32 @@ export const ClassPage = () => {
   const [grade, setGrade] = useState<string>('');
   const [classInfo, setClassInfo] = useState<IClass | null>(null);
   const context = useGlobalContext();
+  const { id } = useParams();
 
+  useEffect(() => {
+    api
+      .get(`api/class/${id}`)
+      .then((response) => {
+        setClassInfo(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+        setClassInfo(null);
+        alert('falha ao carregar informações do professor');
+      });
+  }, []);
   return (
     <PageContainer>
       <Container>
         <img src={classImg} alt="classImg" />
         <Box className="info">
-          {classInfo?.name && <Typography>{classInfo?.name}</Typography>}
-          {classInfo?.teacher_id && <Typography>{classInfo?.teacher_id}</Typography>}
-          {classInfo?.subject_id && <Typography>{classInfo?.subject_id}</Typography>}
+          {classInfo?.name && <Typography>Nome da turma: {classInfo?.name}</Typography>}
+          {classInfo?.teacher_id && (
+            <Typography>Id professor: {classInfo?.teacher_id}</Typography>
+          )}
+          {classInfo?.subject_id && (
+            <Typography>Id da matéria: {classInfo?.subject_id}</Typography>
+          )}
           <Box className="addComment">
             <Typography className="label">Adicionar Avaliação</Typography>
             <Typography className="description">

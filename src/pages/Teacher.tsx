@@ -1,10 +1,12 @@
 import { Box, Button, styled, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import teacher from '../assets/teacher.png';
 import { PageContainer } from '../components/Containers/PageContainer';
 import { Input } from '../components/Input/Input';
 import { useGlobalContext } from '../contexts/useContext';
+import { api } from '../services/api';
 import { ITeacher } from '../services/interfaces';
 
 const Container = styled(Box)(() => ({
@@ -48,6 +50,10 @@ const Container = styled(Box)(() => ({
       borderTop: '1px solid #F0EDEE',
     },
 
+    '& .MuiTypography-root': {
+      color: '#F0EDEE',
+    },
+
     '& .addComment': {
       display: 'flex',
       flexDirection: 'column',
@@ -81,16 +87,31 @@ export const TeacherPage = () => {
   const [grade, setGrade] = useState<string>('');
   const [teacherInfo, setTeacherInfo] = useState<ITeacher | null>(null);
   const context = useGlobalContext();
+  const { id } = useParams();
+
+  useEffect(() => {
+    api
+      .get(`api/teacher/${id}`)
+      .then((response) => {
+        setTeacherInfo(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+        setTeacherInfo(null);
+        alert('falha ao carregar informações do professor');
+      });
+  }, []);
 
   return (
     <PageContainer>
       <Container>
         <img src={teacher} alt="teacher" />
         <Box className="info">
-          {teacherInfo?.name && <Typography>{teacherInfo?.name}</Typography>}
-          {teacherInfo?.code && <Typography>{teacherInfo?.code}</Typography>}
-          {teacherInfo?.departamentId && (
-            <Typography>{teacherInfo?.departamentId}</Typography>
+          {teacherInfo?.name && (
+            <Typography>Nome do Professor: {teacherInfo?.name}</Typography>
+          )}
+          {teacherInfo?.departament_id && (
+            <Typography>Id do departamento: {teacherInfo?.departament_id}</Typography>
           )}
           <Box className="addComment">
             <Typography className="label">Adicionar Avaliação</Typography>
