@@ -101,8 +101,7 @@ export const ClassPage = () => {
         teacher_id: null,
         class_id: id,
       })
-      .then((response) => {
-        context?.setLoggedUser(response.data);
+      .then(() => {
         setCreated('success');
       })
       .catch((e) => {

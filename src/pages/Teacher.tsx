@@ -1,5 +1,4 @@
 import { Box, Button, styled, Typography } from '@mui/material';
-import { create } from '@mui/material/styles/createTransitions';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -102,8 +101,7 @@ export const TeacherPage = () => {
         teacher_id: id,
         class_id: null,
       })
-      .then((response) => {
-        context?.setLoggedUser(response.data);
+      .then(() => {
         setCreated('success');
       })
       .catch((e) => {
