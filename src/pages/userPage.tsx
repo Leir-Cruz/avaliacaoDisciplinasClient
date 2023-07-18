@@ -119,6 +119,19 @@ export const UserPage = () => {
       });
   };
 
+  const handleDeleteAnotherAccount = (deletedId: any) => {
+    api
+      .delete(`api/user/delete/${deletedId}`)
+      .then(() => {
+        alert('user deletado com sucesso!');
+        navigate('/');
+      })
+      .catch((e) => {
+        alert('erro ao deletar');
+        console.log(e);
+      });
+  };
+
   useEffect(() => {
     if (context?.loggedUser) {
       if (context.loggedUser.id == id) {
@@ -274,9 +287,9 @@ export const UserPage = () => {
                 sx={{
                   backgroundColor: '#FF715B',
                 }}
-                onClick={handleDelete}
+                onClick={() => handleDeleteAnotherAccount(id)}
               >
-                <Typography color="#FBFBFB">Apagar essa conta conta</Typography>
+                <Typography color="#FBFBFB">Apagar essa conta</Typography>
               </Button>
             )}
             {context?.loggedUser?.isadmin && (
