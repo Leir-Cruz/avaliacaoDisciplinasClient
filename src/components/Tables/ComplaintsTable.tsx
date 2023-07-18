@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { api } from '../../services/api';
 import { IComplaint } from '../../services/interfaces';
@@ -14,9 +14,14 @@ import { IComplaint } from '../../services/interfaces';
 interface IComplaintsTable {
   onClickRow: React.Dispatch<React.SetStateAction<boolean>>;
   setId: React.Dispatch<React.SetStateAction<string>>;
+  setCommentId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const ComplaintsTable = ({ onClickRow, setId }: IComplaintsTable) => {
+export const ComplaintsTable = ({
+  onClickRow,
+  setId,
+  setCommentId,
+}: IComplaintsTable) => {
   const [complaints, setComplaints] = useState<IComplaint[]>([]);
   const navigate = useNavigate();
 
@@ -52,6 +57,7 @@ export const ComplaintsTable = ({ onClickRow, setId }: IComplaintsTable) => {
               onClick={() => {
                 onClickRow(true);
                 setId(complaint.id);
+                setCommentId(complaint.comment_id);
               }}
               sx={{
                 '&:last-child td, &:last-child th': { border: 0 },

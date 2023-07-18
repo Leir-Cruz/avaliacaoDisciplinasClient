@@ -36,6 +36,7 @@ export const ComplaintsPage = () => {
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
   const [typePopUp, setTypePopUp] = useState<string>('');
   const [id, setId] = useState<string>('');
+  const [selectedCommentid, setSelectedCommentId] = useState<string>('');
 
   return (
     <PageContainer>
@@ -46,10 +47,15 @@ export const ComplaintsPage = () => {
           setOpenPopUp={setOpenPopUp}
           setTypePopUp={setTypePopUp}
           id={id}
+          commentId={selectedCommentid}
         />
         <PopUp open={openPopUp} setOpen={setOpenPopUp} type={typePopUp} />
         <Typography className="title">Lista de Denúncias</Typography>
-        <ComplaintsTable onClickRow={setOpen} setId={setId} />
+        <ComplaintsTable
+          onClickRow={setOpen}
+          setId={setId}
+          setCommentId={setSelectedCommentId}
+        />
       </Container>
     </PageContainer>
   );

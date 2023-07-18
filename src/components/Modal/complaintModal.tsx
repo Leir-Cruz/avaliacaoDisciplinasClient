@@ -56,6 +56,7 @@ interface IComplaintModal {
   setOpenPopUp: React.Dispatch<React.SetStateAction<boolean>>;
   setTypePopUp: React.Dispatch<React.SetStateAction<string>>;
   id: string | undefined;
+  commentId: string | undefined;
 }
 
 export const ComplainModal = ({
@@ -64,6 +65,7 @@ export const ComplainModal = ({
   setOpenPopUp,
   setTypePopUp,
   id,
+  commentId,
 }: IComplaintModal) => {
   const context = useGlobalContext();
 
@@ -95,19 +97,14 @@ export const ComplainModal = ({
       .finally(() => setOpenPopUp(true));
   };
   //todo change this
-  const handleComplaint = () => {
+  const acceptComplaint = () => {
     api
-      .post(`api/complaint/create`, {
-        //comment_id: id,
-        user_id: context?.loggedUser?.id,
-        status: 'pending',
-      })
+      .delete(`api/complaint/${id}/delete_comment/${commentId}`)
       .then(() => {
         setTypePopUp('success');
       })
       .catch((e) => {
         setTypePopUp('failed');
-        console.log(e);
       })
       .finally(() => setOpenPopUp(true));
   };
@@ -137,7 +134,7 @@ export const ComplainModal = ({
               sx={{
                 backgroundColor: '#C589E8',
               }}
-              onClick={handleComplaint}
+              onClick={acceptComplaint}
             >
               <Typography color="#FBFBFB">Aceitar Denúncia</Typography>
             </Button>
