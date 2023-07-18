@@ -13,9 +13,10 @@ import { IComment } from '../../services/interfaces';
 
 interface IClassCommentsTable {
   onClickRow: React.Dispatch<React.SetStateAction<boolean>>;
+  setCommentId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const ClassCommentsTable = ({ onClickRow }: IClassCommentsTable) => {
+export const ClassCommentsTable = ({ onClickRow, setCommentId }: IClassCommentsTable) => {
   const [comments, setComments] = useState<IComment[]>([]);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -49,7 +50,10 @@ export const ClassCommentsTable = ({ onClickRow }: IClassCommentsTable) => {
           {comments.map((comment) => (
             <TableRow
               key={comment.id}
-              onClick={() => onClickRow(true)}
+              onClick={() => {
+                onClickRow(true);
+                setCommentId(comment.id);
+              }}
               sx={{
                 '&:last-child td, &:last-child th': { border: 0 },
                 '&:hover': { cursor: 'pointer' },

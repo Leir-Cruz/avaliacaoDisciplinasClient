@@ -37,6 +37,7 @@ export const TeacherCommentsPage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
   const [typePopUp, setTypePopUp] = useState<string>('');
+  const [selectedCommentid, setSelectedCommentId] = useState<string>('');
 
   return (
     <PageContainer>
@@ -46,11 +47,11 @@ export const TeacherCommentsPage = () => {
           setOpen={setOpen}
           setOpenPopUp={setOpenPopUp}
           setTypePopUp={setTypePopUp}
-          id={id}
+          id={selectedCommentid}
         />
         <PopUp open={openPopUp} setOpen={setOpenPopUp} type={typePopUp} />
         <Typography className="title">Comentários do professor id = {id}</Typography>
-        <TeacherCommentsTable onClickRow={setOpen} />
+        <TeacherCommentsTable onClickRow={setOpen} setCommentId={setSelectedCommentId} />
       </Container>
     </PageContainer>
   );
