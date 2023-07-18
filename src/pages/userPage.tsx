@@ -280,16 +280,28 @@ export const UserPage = () => {
               </Button>
             )}
             {context?.loggedUser?.isadmin && (
-              <Button
-                sx={{
-                  backgroundColor: '#C589E8',
-                }}
-                onClick={() => {
-                  navigate('/student');
-                }}
-              >
-                <Typography color="#FBFBFB">Ver todas as contas</Typography>
-              </Button>
+              <>
+                <Button
+                  sx={{
+                    backgroundColor: '#C589E8',
+                  }}
+                  onClick={() => {
+                    navigate('/student');
+                  }}
+                >
+                  <Typography color="#FBFBFB">Ver todas as contas</Typography>
+                </Button>
+                <Button
+                  sx={{
+                    backgroundColor: '#C589E8',
+                  }}
+                  onClick={() => {
+                    navigate('/complaints');
+                  }}
+                >
+                  <Typography color="#FBFBFB">Ver todas as denuncias</Typography>
+                </Button>
+              </>
             )}
           </Box>
         </Box>

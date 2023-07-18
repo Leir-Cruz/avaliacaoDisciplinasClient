@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ClassPage } from '../pages/Class';
 import { ClassCommentsPage } from '../pages/ClassCommentsPage';
 import { ClassesPage } from '../pages/ClassesPage';
+import { ComplaintsPage } from '../pages/ComplaintsPage';
 import { DepartamentsPage } from '../pages/DepartamentsPage';
 import { HomePage } from '../pages/Homepage';
 import { Login } from '../pages/Login';
@@ -35,6 +36,7 @@ const MainRoutes = () => {
       <Route path="/class/" element={<ClassesPage />} />
       <Route path="/student/" element={<UsersPage />} />
       <Route path="/departament/" element={<DepartamentsPage />} />
+      <Route path="/complaints/" element={<ComplaintsPage />} />
       <Route path="/subject/" element={<SubjectsPage />} />
       <Route path="/teacher/:id/comments" element={<TeacherCommentsPage />} />
       <Route path="/class/:id/comments" element={<ClassCommentsPage />} />

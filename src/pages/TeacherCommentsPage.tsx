@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { PageContainer } from '../components/Containers/PageContainer';
-import { CommentModal } from '../components/Modal/modal';
+import { CommentModal } from '../components/Modal/commentModal';
 import { PopUp } from '../components/PopUp/popup';
 import { TeacherCommentsTable } from '../components/Tables/teacherCommentsTable';
 

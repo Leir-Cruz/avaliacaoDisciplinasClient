@@ -1,11 +1,10 @@
 import { Box, styled, Typography } from '@mui/material';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 import { PageContainer } from '../components/Containers/PageContainer';
-import { CommentModal } from '../components/Modal/commentModal';
+import { ComplainModal } from '../components/Modal/complaintModal';
 import { PopUp } from '../components/PopUp/popup';
-import { ClassCommentsTable } from '../components/Tables/classCommentsTable';
+import { ComplaintsTable } from '../components/Tables/ComplaintsTable';
 
 const Container = styled(Box)(() => ({
   display: 'flex',
@@ -32,16 +31,16 @@ const Container = styled(Box)(() => ({
   },
 }));
 
-export const ClassCommentsPage = () => {
-  const { id } = useParams();
+export const ComplaintsPage = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
   const [typePopUp, setTypePopUp] = useState<string>('');
+  const [id, setId] = useState<string>('');
 
   return (
     <PageContainer>
       <Container>
-        <CommentModal
+        <ComplainModal
           open={open}
           setOpen={setOpen}
           setOpenPopUp={setOpenPopUp}
@@ -49,8 +48,8 @@ export const ClassCommentsPage = () => {
           id={id}
         />
         <PopUp open={openPopUp} setOpen={setOpenPopUp} type={typePopUp} />
-        <Typography className="title">Comentários da turma id = {id}</Typography>
-        <ClassCommentsTable onClickRow={setOpen} />
+        <Typography className="title">Lista de Denúncias</Typography>
+        <ComplaintsTable onClickRow={setOpen} setId={setId} />
       </Container>
     </PageContainer>
   );
